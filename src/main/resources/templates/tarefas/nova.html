@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Nova Tarefa</title>
+</head>
+<body>
+<h1>Criar Nova Tarefa</h1>
+
+<!-- Formulário para adicionar nova tarefa -->
+<form th:action="@{/tarefas/nova}" method="post">
+    <div>
+        <label for="titulo">Descrição:</label>
+        <textarea id="titulo" name="titulo" placeholder="Titulo da tarefa"></textarea>
+    </div>
+    <div>
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" placeholder="Descrição da tarefa"></textarea>
+    </div>
+    <div>
+        <label for="dataInicio">Data de Início:</label>
+        <input type="datetime-local" id="dataInicio" name="dataInicio" required>
+    </div>
+    <div>
+        <label for="dataLimite">Data Limite:</label>
+        <input type="datetime-local" id="dataLimite" name="dataLimite" required>
+    </div>
+    <div>
+        <button type="submit">Salvar</button>
+    </div>
+</form>
+<!-- Botão para voltar à lista de tarefas -->
+<a th:href="@{/tarefas}" class="btn-action">Cancelar</a>
+</body>
+</html>

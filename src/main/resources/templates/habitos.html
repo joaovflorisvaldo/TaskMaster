@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Hábitos</title>
+</head>
+<body>
+<h1>Meus Hábitos</h1>
+
+<a th:href="@{/habitos/novo}">Adicionar Novo Hábito</a>
+
+<ul>
+    <li th:each="habito : ${habitos}">
+        <strong th:text="${habito.descricao}">Descrição</strong>
+        <form th:action="@{/habitos/excluir/{id}(id=${habito.id})}" method="post" style="display:inline;">
+            <button type="submit">Excluir</button>
+        </form>
+    </li>
+</ul>
+
+</body>
+</html>

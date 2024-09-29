@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>TaskMaster - Login</title>
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<div class="login-container">
+  <h2>TaskMaster - Login</h2>
+
+  <!-- Verifica se há uma mensagem de erro e exibe -->
+  <div th:if="${error != null}" class="error">
+    <p th:text="${error}"></p>
+  </div>
+
+  <!-- O formulário deve estar configurado corretamente para enviar uma requisição POST -->
+  <form th:action="@{/processLogin}" th:object="${loginForm}" method="post">
+    <div class="form-group">
+      <label for="email">Email:</label>
+      <input type="email" id="email" th:field="*{email}" placeholder="Digite seu email" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Senha:</label>
+      <input type="password" id="password" th:field="*{password}" placeholder="Digite sua senha" required>
+    </div>
+    <button type="submit" class="btn-login">Entrar</button>
+  </form>
+
+  <div class="signup-link">Não tem uma conta? <a th:href="@{/cadastro}">Cadastre-se</a></div>
+</div>
+</body>
+</html>

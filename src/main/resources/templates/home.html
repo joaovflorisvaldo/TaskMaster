@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>TaskMaster - Home</title>
+    <link rel="stylesheet" href="/css/home.css"> <!-- Inclua o estilo -->
+</head>
+<body>
+<div class="home-container">
+    <!-- Mensagem de boas-vindas -->
+    <h1 th:text="'Bem-vindo, ' + ${nomeUsuario} + '!'">Bem-vindo, Usuário!</h1>
+    <p>Gerencie suas tarefas e hábitos diários de forma eficiente.</p>
+
+    <!-- Navegação Rápida -->
+    <div class="quick-actions">
+        <h2>Ações Rápidas</h2>
+        <a th:href="@{/tarefas}" class="btn-action">Ver Tarefas</a>
+        <a th:href="@{/tarefas/nova}" class="btn-action">Nova Tarefa</a>
+        <a th:href="@{/habitos}" class="btn-action">Ver Hábitos</a>
+        <a th:href="@{/habitos/novo}" class="btn-action">Novo Hábito</a>
+    </div>
+
+    <!-- Resumo de Tarefas e Hábitos -->
+    <div class="summary">
+        <h2>Resumo</h2>
+        <div class="tasks-summary">
+            <h3>Minhas Tarefas</h3>
+            <ul>
+                <!-- Loop para exibir as tarefas recentes -->
+                <li th:each="tarefa : ${tarefasRecentes}">
+                    <span th:text="${tarefa.titulo}">Nome da Tarefa</span> -
+                    <span th:text="${tarefa.concluida ? 'Concluída' : 'Pendente'}">Status</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Resumo dos Hábitos -->
+        <div class="habits-summary">
+            <h3>Hábitos Recentes</h3>
+            <ul>
+                <!-- Loop para exibir os hábitos recentes -->
+                <li th:each="habito : ${habitosRecentes}">
+                    <span th:text="${habito.descricao}">Descrição do Hábito</span>
+                    <!-- Pode-se adicionar mais informações sobre o hábito aqui -->
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
