@@ -1,8 +1,5 @@
 # TaskMaster
 
-
-# TaskMaster
-
 ## Configurar o Banco de Dados
 
 Certifique-se de ter o PostgreSQL instalado e em execução. Siga as etapas abaixo para configurar o banco de dados para o projeto.
