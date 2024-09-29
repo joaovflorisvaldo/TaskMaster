@@ -1,55 +1,62 @@
-<!DOCTYPE html>
+
+<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>TaskMaster - Cadastro</title>
-    <link rel="stylesheet" href="/css/cadastro.css">
-</head>
-<body>
-<div class="signup-container">
-    <h2>Cadastro - TaskMaster</h2>
+     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+ <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="w-full max-w-md bg-white rounded-lg shadow-md p-6">
+        <h2 class="text-2xl font-bold mb-6 text-center">Inscreva-se</h2>   
+        <!-- Formulário de Cadastro -->
+        <form th:action="@{/cadastro}" th:object="${signupForm}" method="post">
 
-    <!-- Formulário de Cadastro -->
-    <form th:action="@{/cadastro}" th:object="${signupForm}" method="post">
-        <!-- Exibir mensagens de erro para o campo 'nome' -->
-        <div th:if="${#fields.hasErrors('nome')}" class="error">
-            <p th:errors="*{nome}">Erro no campo nome</p>
-        </div>
-        <div class="form-group">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" th:field="*{nome}" placeholder="Digite seu nome" required>
-        </div>
+            <!-- Exibir mensagens de erro para o campo 'nome' -->
+           <div th:if="${#fields.hasErrors('nome')}" class="error">
+               <p th:errors="*{nome}">Erro no campo nome</p>
+           </div>
+            <div class="mb-4 " th:if="${#fields.hasErrors('nome')}">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="nome">
+                    Nome
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text"  id="nome" th:field="*{nome}" placeholder="Digite seu nome" required >
+            </div>
 
-        <!-- Exibir mensagens de erro para o campo 'email' -->
-        <div th:if="${#fields.hasErrors('email')}" class="error">
-            <p th:errors="*{email}">Erro no campo email</p>
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" id="email" th:field="*{email}" placeholder="Digite seu email" required>
-        </div>
+            <!-- Exibir mensagens de erro para o campo 'email' -->
+            <div th:if="${#fields.hasErrors('email')}" class="error">
+                <p th:errors="*{email}">Erro no campo email</p>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" th:field="*{email}" placeholder="Digite seu email" required>
+            </div>
+            
+            <!-- Exibir mensagens de erro para o campo 'password' -->
+            <div th:if="${#fields.hasErrors('password')}" class="error">
+                <p th:errors="*{password}">Erro no campo senha</p>
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="senha">
+                    Senha
+                </label>
+                <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="password"id="password" th:field="*{password}" placeholder="Digite sua senha" required>
+            </div>
 
-        <!-- Exibir mensagens de erro para o campo 'password' -->
-        <div th:if="${#fields.hasErrors('password')}" class="error">
-            <p th:errors="*{password}">Erro no campo senha</p>
-        </div>
-        <div class="form-group">
-            <label for="password">Senha:</label>
-            <input type="password" id="password" th:field="*{password}" placeholder="Digite sua senha" required>
-        </div>
+            <!-- Mensagens de sucesso ou erro para a submissão -->
+            <div th:if="${success != null}" class="success">
+                <p th:text="${success}"></p>
+            </div>
+            <div th:if="${error != null}" class="error">
+                <p th:text="${error}"></p>
+            </div>
 
-        <!-- Mensagens de sucesso ou erro para a submissão -->
-        <div th:if="${success != null}" class="success">
-            <p th:text="${success}"></p>
-        </div>
-        <div th:if="${error != null}" class="error">
-            <p th:text="${error}"></p>
-        </div>
-
-        <button type="submit" class="btn-signup">Cadastrar</button>
-    </form>
-
-    <!-- Link para a página de login -->
-    <div class="login-link">Já tem uma conta? <a th:href="@{/login}">Faça login</a></div>
-</div>
-</body>
-</html>
+            <div class="flex items-center justify-between">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Cadastrar
+                </button>
+            </div>
+            <div class="login-link">Já tem uma conta? <a th:href="@{/login}">Faça login</a></div>
+        </form>
+    </div>

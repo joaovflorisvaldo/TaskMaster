@@ -1,0 +1,16 @@
+body {
+    background-color: #f0f8ff;
+}
+
+textarea {
+    transition: all 0.3s ease-in-out;
+}
+
+textarea:focus {
+    border-color: #3EAAF3; /* Cor de foco azul */
+    box-shadow: 0 0 5px rgba(62, 170, 243, 0.5);
+}
+
+button[type="submit"] {
+    transition: background-color 0.3s ease-in-out;
+}

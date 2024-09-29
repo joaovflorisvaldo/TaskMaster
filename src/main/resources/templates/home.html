@@ -2,49 +2,54 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>TaskMaster - Home</title>
-    <link rel="stylesheet" href="/css/home.css"> <!-- Inclua o estilo -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="home-container">
-    <!-- Mensagem de boas-vindas -->
-    <h1 th:text="'Bem-vindo, ' + ${nomeUsuario} + '!'">Bem-vindo, Usuário!</h1>
-    <p>Gerencie suas tarefas e hábitos diários de forma eficiente.</p>
-
-    <!-- Navegação Rápida -->
-    <div class="quick-actions">
-        <h2>Ações Rápidas</h2>
-        <a th:href="@{/tarefas}" class="btn-action">Ver Tarefas</a>
-        <a th:href="@{/tarefas/nova}" class="btn-action">Nova Tarefa</a>
-        <a th:href="@{/habitos}" class="btn-action">Ver Hábitos</a>
-        <a th:href="@{/habitos/novo}" class="btn-action">Novo Hábito</a>
+    <header class="bg-primary text-white text-center py-5">
+      <div class="home-container">
+        <!-- Mensagem de boas-vindas -->
+        <h1 th:text="'Bem-vindo, ' + ${nomeUsuario} + '!'">Bem-vindo, Usuário!</h1>
+        <p>Gerencie suas tarefas e hábitos diários de forma eficiente.</p>
+      </div>
+    </header>
+    <!-- Conteúdo Principal -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="quick-actions">
+            <h2>Ações Rápidas</h2>
+            <a class="btn btn-primary" th:href="@{/tarefas}" role="button">Ver Tarefas</a>
+            <a class="btn btn-primary" th:href="@{/tarefas/nova}" role="button">Nova Tarefa</a>
+            <a class="btn btn-primary" th:href="@{/habitos}" role="button">Ver Hábitos</a>
+            <a class="btn btn-primary" th:href="@{/habitos/novo}" role="button">Novo Hábito</a>
+          </div>
+        </div>
+       </div>
     </div>
-
-    <!-- Resumo de Tarefas e Hábitos -->
+  </section>
+  <div class="container">
     <div class="summary">
-        <h2>Resumo</h2>
-        <div class="tasks-summary">
-            <h3>Minhas Tarefas</h3>
-            <ul>
-                <!-- Loop para exibir as tarefas recentes -->
-                <li th:each="tarefa : ${tarefasRecentes}">
-                    <span th:text="${tarefa.titulo}">Nome da Tarefa</span> -
-                    <span th:text="${tarefa.concluida ? 'Concluída' : 'Pendente'}">Status</span>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Resumo dos Hábitos -->
-        <div class="habits-summary">
-            <h3>Hábitos Recentes</h3>
-            <ul>
-                <!-- Loop para exibir os hábitos recentes -->
-                <li th:each="habito : ${habitosRecentes}">
-                    <span th:text="${habito.descricao}">Descrição do Hábito</span>
-                    <!-- Pode-se adicionar mais informações sobre o hábito aqui -->
-                </li>
-            </ul>
-        </div>
+      <h2 class="ms-3">Resumo</h2>
+      <div class="list-group list-group-flush ms-3" >
+        <h3>Minhas Tarefas</h3>
+        <ul>
+          <li  th:each="tarefa : ${tarefasRecentes}" class="list-group-item">
+            <span th:text="${tarefa.titulo}">Titulo da Tarefa</span> -
+            <span th:text="${tarefa.concluida}">Status</span>
+          </li>
+        </ul>
+      </div>
+      <div class="list-group list-group-flush ms-3">
+        <h3>Hábitos Recentes</h3>
+        <ul>
+          <li th:each="habito : ${habitosRecentes}" class="list-group-item">
+            <span th:text="${habito.id}">ID da Hábito</span> -
+            <span th:text="${habito.descricao}">Descrição do Hábito</span>
+          </li>
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
 </body>
 </html>

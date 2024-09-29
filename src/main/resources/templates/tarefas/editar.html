@@ -1,52 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/editar.css">
     <title>Editar Tarefa</title>
 </head>
-<body>
-<h1 th:text="${#strings.isEmpty(tarefa.id) ? 'Nova Tarefa' : 'Editar Tarefa'}">Nova Tarefa</h1>
+<body class="bg-gray-100">
+<div class="container mx-auto mt-10 px-4 py-8 bg-white rounded-lg shadow-md">
+    <h1 th:text="${#strings.isEmpty(tarefa.id) ? 'Nova Tarefa' : 'Editar Tarefa'}"
+        class="text-3xl font-bold text-blue-600 mb-6">
+        Nova Tarefa
+    </h1>
+    <form th:action="@{/tarefas/editar}" method="post">
+        <input type="hidden" name="id" th:value="${tarefa.id}" />
 
-<form th:action="@{/tarefas/editar}" method="post">
-    <!-- Campo oculto para o ID da tarefa -->
-    <input type="hidden" name="id" th:value="${tarefa.id}" />
+        <div class="mb-5">
+            <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Título:</label>
+            <input type="text" id="titulo" name="titulo" th:value="${tarefa.titulo}" required
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
 
-    <!-- Campo para título -->
-    <div>
-        <label for="titulo">Título:</label>
-        <input type="text" id="titulo" name="titulo" th:value="${tarefa.titulo}" required />
-    </div>
+        <div class="mb-5">
+            <label for="descricao" class="block text-gray-700 text-sm font-bold mb-2">Descrição:</label>
+            <textarea id="descricao" name="descricao" th:text="${tarefa.descricao}"
+                      class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
 
-    <!-- Campo para descrição -->
-    <div>
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" th:text="${tarefa.descricao}"></textarea>
-    </div>
+        <div class="mb-5">
+            <label for="dataInicio" class="block text-gray-700 text-sm font-bold mb-2">Data de Início:</label>
+            <input type="datetime-local" id="dataInicio" name="dataInicio" th:value="${formattedDataInicio}" required
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
 
-    <!-- Campo para data de início -->
-    <div>
-        <label for="dataInicio">Data de Início:</label>
-        <input type="datetime-local" id="dataInicio" name="dataInicio"
-               th:value="${formattedDataInicio}" required />
+        <div class="mb-5">
+            <label for="dataLimite" class="block text-gray-700 text-sm font-bold mb-2">Data Limite:</label>
+            <input type="datetime-local" id="dataLimite" name="dataLimite" th:value="${formattedDataLimite}" required
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        </div>
 
+        <div class="mb-5">
+            <label for="concluida" class="block text-gray-700 text-sm font-bold mb-2">Concluída:</label>
+            <input type="checkbox" id="concluida" name="concluida" th:checked="${tarefa.concluida}"
+                   class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded" />
+        </div>
 
-    </div>
-
-    <!-- Campo para data limite -->
-    <div>
-        <label for="dataLimite">Data Limite:</label>
-        <input type="datetime-local" id="dataLimite" name="dataLimite"
-               th:value="${formattedDataLimite}" required />
-
-
-    </div>
-
-    <!-- Campo para marcar como concluída -->
-    <div>
-        <label for="concluida">Concluída:</label>
-        <input type="checkbox" id="concluida" name="concluida" th:checked="${tarefa.concluida}" />
-    </div>
-
-    <button type="submit">Salvar</button>
-</form>
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+            Salvar
+        </button>
+    </form>
+</div>
 </body>
 </html>

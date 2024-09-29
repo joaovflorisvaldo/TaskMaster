@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/nova.css">
     <title>Nova Tarefa</title>
 </head>
 <body>
-<h1>Criar Nova Tarefa</h1>
-
-<!-- Formulário para adicionar nova tarefa -->
-<form th:action="@{/tarefas/nova}" method="post">
-    <div>
-        <label for="titulo">Descrição:</label>
-        <textarea id="titulo" name="titulo" placeholder="Titulo da tarefa"></textarea>
+<header class="container mx-auto bg-blue-600 text-white text-center py-5 rounded-lg shadow-lg">
+    <div class="home-container">
+        <h1 class="text-3xl font-bold">Criar Nova Tarefa</h1>
     </div>
-    <div>
-        <label for="descricao">Descrição:</label>
-        <textarea id="descricao" name="descricao" placeholder="Descrição da tarefa"></textarea>
-    </div>
-    <div>
-        <label for="dataInicio">Data de Início:</label>
-        <input type="datetime-local" id="dataInicio" name="dataInicio" required>
-    </div>
-    <div>
-        <label for="dataLimite">Data Limite:</label>
-        <input type="datetime-local" id="dataLimite" name="dataLimite" required>
-    </div>
-    <div>
-        <button type="submit">Salvar</button>
-    </div>
-</form>
-<!-- Botão para voltar à lista de tarefas -->
-<a th:href="@{/tarefas}" class="btn-action">Cancelar</a>
+</header>
+<div class="h-5"></div>
+<div class="container mx-auto px-5 py-10 bg-white rounded-lg shadow-md">
+    <form th:action="@{/tarefas/nova}" method="post">
+        <div class="mb-5">
+            <label for="titulo" class="block text-gray-700 text-sm font-bold mb-2">Titulo:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Titulo da tarefa"
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-5">
+            <label for="dataInicio" class="block text-gray-700 text-sm font-bold mb-2">Data de Início:</label>
+            <input type="datetime-local" id="dataInicio" name="dataInicio" required
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-5">
+            <label for="dataLimite" class="block text-gray-700 text-sm font-bold mb-2">Data Limite:</label>
+            <input type="datetime-local" id="dataLimite" name="dataLimite" required
+                   class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div class="mb-5">
+            <label for="descricao" class="block text-gray-700 text-sm font-bold mb-2">Descrição:</label>
+            <textarea id="descricao" name="descricao" placeholder="Descrição da tarefa"
+                      class="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+        <div class="flex space-x-4">
+            <button type="submit"
+                    class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                Salvar
+            </button>
+            <a th:href="@{/tarefas}"
+               class="bg-gray-300 hover:bg-gray-400 text-blue-600 font-bold py-2 px-4 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-gray-300">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</div>
 </body>
 </html>

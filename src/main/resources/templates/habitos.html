@@ -1,21 +1,45 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Lista de Hábitos</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/habitos.css">
+  <title>Lista de Hábitos</title>
 </head>
-<body>
-<h1>Meus Hábitos</h1>
+<body class="bg-gray-100">
+<!-- Cabeçalho com o botão de voltar -->
+<header class="bg-blue-600 text-white text-center py-5 relative">
+  <a href="javascript:history.back()" class="btn bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg absolute top-3 left-3">
+    ← Voltar
+  </a>
+  <h1 class="text-2xl font-bold">Lista de Hábitos</h1>
+</header>
 
-<a th:href="@{/habitos/novo}">Adicionar Novo Hábito</a>
+<!-- Seção principal -->
+<section class="py-10">
+  <div class="container mx-auto">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <!-- Link para adicionar novo hábito -->
+      <div class="mb-5">
+        <h2>
+          <a th:href="@{/habitos/novo}" class="text-blue-600 hover:text-blue-800 font-bold text-lg">
+            + Adicionar Novo Hábito
+          </a>
+        </h2>
+      </div>
 
-<ul>
-    <li th:each="habito : ${habitos}">
-        <strong th:text="${habito.descricao}">Descrição</strong>
-        <form th:action="@{/habitos/excluir/{id}(id=${habito.id})}" method="post" style="display:inline;">
-            <button type="submit">Excluir</button>
-        </form>
-    </li>
-</ul>
-
+      <!-- Lista de hábitos -->
+      <ul class="space-y-4">
+        <li th:each="habito : ${habitos}" class="flex justify-between items-center bg-gray-50 p-4 rounded-lg shadow-md">
+          <strong th:text="${habito.descricao}" class="text-gray-700">Descrição</strong>
+          <form th:action="@{/habitos/excluir/{id}(id=${habito.id})}" method="post">
+            <button class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg">
+              Excluir
+            </button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
 </body>
 </html>

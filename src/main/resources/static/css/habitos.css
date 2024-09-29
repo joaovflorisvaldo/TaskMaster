@@ -1,0 +1,15 @@
+body {
+    background-color: #f0f8ff;
+}
+a:hover {
+    text-decoration: underline;
+}
+ul li {
+    transition: all 0.3s ease-in-out;
+}
+button {
+    transition: background-color 0.3s ease-in-out;
+}
+button:hover {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
